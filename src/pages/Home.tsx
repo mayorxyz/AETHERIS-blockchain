@@ -40,8 +40,16 @@ const SLABS = [
 ];
 
 const PARTNERS = [
-  "NEBULA SWAP", "AETHERLEND", "PRISMLINK", "VOIDRUNNERS", "CHAINFORGE",
-  "MONOLITH", "ORBITAL PAY", "HEXLABS", "VAULTIC", "STARDUST ARENA",
+  "NEBULA SWAP",
+  "AETHERLEND",
+  "PRISMLINK",
+  "VOIDRUNNERS",
+  "CHAINFORGE",
+  "MONOLITH",
+  "ORBITAL PAY",
+  "HEXLABS",
+  "VAULTIC",
+  "STARDUST ARENA",
 ];
 
 const VALIDATORS = ["pulse-val-04", "prism-node-12", "aeth-stake-77", "void-val-19", "core-node-31"];
@@ -96,94 +104,98 @@ function Hero() {
   }, []);
 
   return (
-    <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden">
-      <NetworkMesh />
-      {/* anchored structural glows: responsive widths to prevent horizontal scroll artifacts on small viewports */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 h-[560px] w-[120vw] max-w-[880px] -translate-x-1/2 rounded-full bg-plasma/15 blur-[140px]" />
-      <div className="pointer-events-none absolute bottom-[-200px] right-[-120px] h-[420px] w-[80vw] max-w-[420px] rounded-full bg-cyber/[0.06] blur-[120px]" />
+  <section className="relative flex min-h-[100svh] w-full max-w-full flex-col justify-center overflow-x-hidden min-w-0">
+    <NetworkMesh />
+    <div className="pointer-events-none absolute -top-40 left-1/2 h-[560px] w-full max-w-[880px] -translate-x-1/2 rounded-full bg-plasma/15 blur-[140px]" />
+    <div className="pointer-events-none absolute bottom-[-200px] right-[-120px] h-[420px] w-full max-w-[420px] rounded-full bg-cyber/[0.06] blur-[120px]" />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pt-28 md:px-8">
+    <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-28 sm:px-6 md:px-8 min-w-0">
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.1 }}
+        className="flex flex-wrap items-center gap-2.5 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-dim"
+      >
+        <span className="live-dot h-1.5 w-1.5 shrink-0 rounded-full bg-cyber" />
+        <span>Aetheris Protocol · L1 · Mainnet Genesis 2024</span>
+      </motion.p>
+
+      <h1 className="mt-6 sm:mt-8 font-display text-[clamp(1.65rem,8.5vw,8rem)] font-semibold leading-[0.92] tracking-[-0.01em] text-holo">
+        <TextReveal text="THE FOUNDATIONAL" mode="chars" stagger={0.022} className="block whitespace-nowrap" />
+        <TextReveal text="LAYER FOR THE" mode="chars" stagger={0.022} delay={0.25} className="block whitespace-nowrap" />
+        <span className="block text-cyber" style={{ textShadow: "0 0 44px rgba(255, 30, 0, 0)" }}>
+          <TextReveal text="NEXT INTERNET." mode="chars" stagger={0.022} delay={0.5} className="whitespace-nowrap" />
+        </span>
+      </h1>
+
+      <div className="mt-8 sm:mt-10 grid items-end gap-8 lg:gap-10 lg:grid-cols-[1.1fr_1fr] min-w-0">
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.28em] text-dim"
+          transition={{ duration: 0.8, delay: 0.9 }}
+          className="max-w-lg text-sm sm:text-base leading-relaxed text-dim md:text-lg min-w-0"
         >
-          <span className="live-dot h-1.5 w-1.5 rounded-full bg-cyber" />
-          Aetheris Protocol · L1 · Mainnet Genesis 2024
+          A Layer 1 engineered for parallel execution, zero knowledge settlement and decentralized sequencing,
+          one hundred thousand transactions per second, without asking validators to compromise.
         </motion.p>
 
-        {/* Responsive typography scaling from mobile to ultrawide */}
-        <h1 className="mt-8 font-display text-[12vw] font-semibold leading-[0.92] tracking-[-0.01em] text-holo sm:text-6xl md:text-7xl lg:text-[6.2rem] xl:text-[7rem] 2xl:text-[8rem]">
-          <TextReveal text="THE FOUNDATIONAL" mode="chars" stagger={0.022} className="block" />
-          <TextReveal text="LAYER FOR THE" mode="chars" stagger={0.022} delay={0.25} className="block" />
-          <span className="block text-cyber" style={{ textShadow: "0 0 44px rgba(0,240,255,0.35)" }}>
-            <TextReveal text="NEXT INTERNET." mode="chars" stagger={0.022} delay={0.5} />
-          </span>
-        </h1>
-
-        <div className="mt-10 grid items-end gap-10 lg:grid-cols-[1.1fr_1fr]">
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="max-w-lg text-base leading-relaxed text-dim md:text-lg"
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.05 }}
+          className="flex flex-col sm:flex-row sm:items-center gap-4 lg:justify-end min-w-0"
+        >
+          <Link
+            to="/technology"
+            className="holo group flex min-h-[44px] items-center justify-center gap-3 rounded-xl px-6 py-3.5 text-sm font-semibold text-holo transition-all duration-300 hover:text-cyber"
           >
-            A Layer-1 engineered for parallel execution, zero-knowledge
-            settlement and decentralized sequencing — one hundred thousand
-            transactions per second, without asking validators to compromise.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.05 }}
-            className="flex flex-wrap items-center gap-5 lg:justify-end"
+            Explore the stack
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            >
+              <path d="M1 7h11M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" fill="none" />
+            </svg>
+          </Link>
+          <Link
+            to="/developers"
+            className="group flex min-h-[44px] items-center justify-center gap-2 text-sm font-semibold text-cyber transition-colors hover:text-holo"
           >
-            <Link
-              to="/technology"
-              className="holo group flex min-h-[44px] items-center gap-3 rounded-xl px-6 py-3.5 text-sm font-semibold text-holo transition-all duration-300 hover:text-cyber"
-            >
-              Explore the stack
-              <svg width="14" height="14" viewBox="0 0 14 14" className="transition-transform duration-300 group-hover:translate-x-1">
-                <path d="M1 7h11M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" fill="none" />
-              </svg>
-            </Link>
-            <Link
-              to="/developers"
-              className="group flex min-h-[44px] items-center gap-2 text-sm font-semibold text-cyber transition-colors hover:text-holo"
-            >
-              <span className="font-mono text-xs">$</span> Build on Aetheris
-            </Link>
-          </motion.div>
-        </div>
+            <span className="font-mono text-xs">$</span> Build on Aetheris
+          </Link>
+        </motion.div>
       </div>
+    </div>
 
-      {/* bottom readout strip */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 1 }}
-        className="relative z-10 mx-auto mt-12 flex w-full max-w-7xl items-end justify-between px-5 pb-8 md:mt-16 md:px-8"
-      >
-        <div className="flex items-center gap-3 text-faint">
-          <motion.span
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            className="block h-8 w-px bg-gradient-to-b from-cyber to-transparent"
-          />
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em]">Scroll to descend</span>
-        </div>
-        <div className="hidden text-right font-mono text-[11px] leading-relaxed text-faint sm:block">
-          <p>
-            BLOCK <span className="text-cyber">#<AnimatedCounter to={blockHeight} duration={0.8} /></span>
-          </p>
-          <p>CONSENSUS · PULSE-BFT</p>
-          <p>FINALITY · 0.4s</p>
-        </div>
-      </motion.div>
-    </section>
-  );
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.4, duration: 1 }}
+      className="relative z-10 mx-auto mt-12 flex w-full max-w-7xl items-end justify-between px-4 sm:px-6 md:px-8 pb-8 md:mt-16 min-w-0"
+    >
+      <div className="flex items-center gap-3 text-faint min-w-0">
+        <motion.span
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          className="block h-8 w-px bg-gradient-to-b from-cyber to-transparent shrink-0"
+        />
+        <span className="font-mono text-[10px] uppercase tracking-[0.25em] truncate">Scroll to descend</span>
+      </div>
+      <div className="hidden text-right font-mono text-[11px] leading-relaxed text-faint sm:block tabular-nums">
+        <p>
+          BLOCK{" "}
+          <span className="text-cyber">
+            #<AnimatedCounter to={blockHeight} duration={0.8} />
+          </span>
+        </p>
+        <p>CONSENSUS · PULSE-BFT</p>
+        <p>FINALITY · 0.4s</p>
+      </div>
+    </motion.div>
+  </section>
+);
 }
 
 function StatsBand() {
@@ -203,18 +215,24 @@ function StatsBand() {
 
   const items = [
     { label: "THROUGHPUT", node: <AnimatedCounter to={stats.tps} duration={1.2} suffix=" TPS" /> },
-    { label: "TOTAL VALUE LOCKED", node: <AnimatedCounter to={stats.tvl} decimals={2} prefix="$" suffix="B" duration={1.2} /> },
+    {
+      label: "TOTAL VALUE LOCKED",
+      node: <AnimatedCounter to={stats.tvl} decimals={2} prefix="$" suffix="B" duration={1.2} />,
+    },
     { label: "ACTIVE NODES", node: <AnimatedCounter to={stats.nodes} duration={1.2} /> },
     { label: "BLOCK HEIGHT", node: <AnimatedCounter to={stats.blocks} duration={1.2} /> },
   ];
 
   return (
-    <section className="relative z-10 mx-auto -mt-2 max-w-7xl px-5 md:px-8">
-      <div className="holo grid grid-cols-2 divide-x divide-y divide-white/[0.06] rounded-2xl lg:grid-cols-4 lg:divide-y-0">
+    <section className="relative z-10 mx-auto -mt-2 w-full max-w-7xl px-4 sm:px-6 md:px-8 min-w-0">
+      <div className="holo grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.06] rounded-2xl overflow-hidden min-w-0">
         {items.map((it, i) => (
-          <div key={it.label} className="group px-3 py-4 transition-colors duration-300 hover:bg-white/[0.03] sm:px-6 sm:py-7">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-faint">{it.label}</p>
-            <p className="mt-2 font-mono text-lg font-medium text-holo transition-colors duration-300 group-hover:text-cyber sm:text-xl md:text-2xl">
+          <div
+            key={it.label}
+            className="group px-4 py-5 transition-colors duration-300 hover:bg-white/[0.03] sm:px-6 sm:py-7 min-w-0"
+          >
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-faint truncate">{it.label}</p>
+            <p className="mt-2 font-mono text-lg sm:text-xl md:text-2xl font-medium text-holo transition-colors duration-300 group-hover:text-cyber tabular-nums truncate">
               {it.node}
             </p>
             <span className="mt-3 block h-px w-8 bg-cyber/40 transition-all duration-500 group-hover:w-full group-hover:bg-cyber" />
@@ -228,15 +246,15 @@ function StatsBand() {
 
 function Manifesto() {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.45"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 2", "end 2"] });
   const text =
-    "Scalability without compromise. Security without centralization. The next internet will not run on borrowed throughput — it will be settled by infrastructure engineered like precision machinery.";
+    "Scalability without compromise. Security without centralization. The next internet will not run on borrowed throughput it will be settled by infrastructure engineered like precision machinery.";
   const words = text.split(" ");
 
   return (
-    <section ref={ref} className="relative z-10 mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-32 lg:py-44">
-      <p className="mb-8 md:mb-10 font-mono text-[11px] uppercase tracking-[0.28em] text-faint">// Manifesto</p>
-      <p className="max-w-5xl font-display text-2xl font-semibold leading-[1.15] tracking-tight text-holo sm:text-3xl md:text-4xl lg:text-[3.4rem]">
+    <section ref={ref} className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-32 lg:py-44 min-w-0">
+      <p className="mb-6 sm:mb-8 md:mb-10 font-mono text-[11px] uppercase tracking-[0.28em] text-faint">// Manifesto</p>
+      <p className="max-w-5xl font-display text-xl sm:text-3xl md:text-4xl lg:text-[3.4rem] font-semibold leading-[1.15] tracking-tight text-holo break-words">
         {words.map((w, i) => (
           <ManifestoWord
             key={i}
@@ -252,29 +270,34 @@ function Manifesto() {
 
 function StackAnatomy() {
   return (
-    <section className="relative z-10 mx-auto max-w-7xl px-5 py-20 md:px-8">
-      <div className="grid gap-10 lg:gap-14 lg:grid-cols-[1fr_1.6fr]">
-        <div className="lg:sticky lg:top-32 lg:self-start">
+    <section className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 py-16 md:py-20 min-w-0">
+      <div className="grid gap-10 lg:gap-14 lg:grid-cols-[1fr_1.6fr] min-w-0">
+        <div className="lg:sticky lg:top-32 lg:self-start min-w-0">
           <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-faint">// Architecture</p>
-          <h2 className="mt-5 font-display text-3xl font-semibold leading-[1.02] tracking-tight text-holo md:text-4xl lg:text-5xl">
+          <h2 className="mt-4 sm:mt-5 font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.02] tracking-tight text-holo">
             <TextReveal text="Anatomy of the stack." />
           </h2>
-          <p className="mt-6 max-w-sm leading-relaxed text-dim">
-            Four subsystems, one coherent machine. Each layer is designed so
-            the one above it never becomes its bottleneck.
+          <p className="mt-4 sm:mt-6 max-w-sm text-sm sm:text-base leading-relaxed text-dim">
+            Four subsystems, one coherent machine. Each layer is designed so the one above it never becomes its
+            bottleneck.
           </p>
           <Link
             to="/technology"
-            className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-cyber transition-colors hover:text-holo"
+            className="group mt-6 sm:mt-8 inline-flex items-center gap-2 text-sm font-semibold text-cyber transition-colors hover:text-holo"
           >
             Read the deep dive
-            <svg width="14" height="14" viewBox="0 0 14 14" className="transition-transform duration-300 group-hover:translate-x-1">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            >
               <path d="M1 7h11M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" fill="none" />
             </svg>
           </Link>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 min-w-0">
           {SLABS.map((s, i) => (
             <motion.div
               key={s.index}
@@ -282,23 +305,26 @@ function StackAnatomy() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              className="min-w-0"
             >
-              <HolographicCard className="group cursor-default p-5 transition-all duration-300 hover:-translate-y-1 md:p-7 lg:p-8">
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <div className="flex items-baseline gap-4">
-                    <span className="font-mono text-xs text-cyber">{s.index}</span>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-faint">{s.layer}</span>
+              <HolographicCard className="group cursor-default p-4 sm:p-6 md:p-7 lg:p-8 transition-all duration-300 hover:-translate-y-1 min-w-0">
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 min-w-0">
+                  <div className="flex items-baseline gap-3 sm:gap-4 min-w-0">
+                    <span className="font-mono text-xs text-cyber shrink-0">{s.index}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-faint truncate">
+                      {s.layer}
+                    </span>
                   </div>
-                  <h3 className="font-display text-xl font-semibold text-holo transition-colors duration-300 group-hover:text-cyber md:text-2xl">
+                  <h3 className="font-display text-lg sm:text-xl md:text-2xl font-semibold text-holo transition-colors duration-300 group-hover:text-cyber truncate">
                     {s.name}
                   </h3>
                 </div>
-                <p className="mt-4 max-w-2xl text-sm leading-relaxed text-dim">{s.copy}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
+                <p className="mt-3 sm:mt-4 max-w-2xl text-xs sm:text-sm leading-relaxed text-dim">{s.copy}</p>
+                <div className="mt-4 sm:mt-5 flex flex-wrap gap-2 min-w-0">
                   {s.specs.map((spec) => (
                     <span
                       key={spec}
-                      className="rounded border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 font-mono text-[10px] tracking-[0.14em] text-dim transition-colors duration-300 group-hover:border-cyber/30 group-hover:text-cyber"
+                      className="rounded border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 font-mono text-[10px] tracking-[0.14em] text-dim transition-colors duration-300 group-hover:border-cyber/30 group-hover:text-cyber whitespace-nowrap"
                     >
                       {spec}
                     </span>
@@ -326,45 +352,49 @@ function BlockFeed() {
   }, []);
 
   return (
-    <section className="relative z-10 mx-auto max-w-7xl px-5 py-20 md:px-8">
-      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+    <section className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 py-16 md:py-20 min-w-0">
+      <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4 min-w-0">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-faint">// Live chain</p>
-          <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-holo md:text-4xl">
+          <h2 className="mt-3 font-display text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-holo">
             <TextReveal text="The chain, breathing." />
           </h2>
         </div>
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2.5 shrink-0">
           <span className="live-dot h-2 w-2 rounded-full bg-cyber" />
           <span className="font-mono text-xs text-dim">STREAMING · 0.4s BLOCKS</span>
         </div>
       </div>
 
-      <div className="holo overflow-hidden rounded-2xl">
-        {/* Replaced fragile nth-child hiding with explicit responsive grid columns and hidden/block utilities */}
-        <div className="grid grid-cols-2 md:grid-cols-[1.1fr_1.3fr_0.7fr_1fr] gap-4 border-b border-white/[0.07] px-4 py-3 md:px-6 md:py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
+      <div className="holo overflow-hidden rounded-2xl w-full min-w-0">
+        {/* Rigid Grid Container for stable alignment */}
+        <div className="grid grid-cols-2 md:grid-cols-[1.1fr_1.3fr_0.7fr_1fr] gap-4 border-b border-white/[0.07] px-4 py-3 md:px-6 md:py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-faint min-w-0">
           <span>Height</span>
           <span className="hidden md:block">Hash</span>
           <span className="text-right">Txns</span>
           <span className="hidden md:block">Validator</span>
         </div>
-        <AnimatePresence initial={false}>
-          {blocks.map((b) => (
-            <motion.div
-              key={b.height}
-              layout
-              initial={{ opacity: 0, y: -16, backgroundColor: "rgba(0,240,255,0.08)" }}
-              animate={{ opacity: 1, y: 0, backgroundColor: "rgba(0,240,255,0)" }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="grid grid-cols-2 md:grid-cols-[1.1fr_1.3fr_0.7fr_1fr] gap-4 border-b border-white/[0.04] px-4 py-3 md:px-6 md:py-3.5 font-mono text-xs last:border-0"
-            >
-              <span className="text-cyber">#{b.height.toLocaleString()}</span>
-              <span className="hidden text-dim md:block">{b.hash}</span>
-              <span className="text-right text-holo">{b.txns.toLocaleString()}</span>
-              <span className="hidden text-dim md:block">{b.validator}</span>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+
+        {/* Height-constrained scrollable block feed to stop structural layout shaking */}
+        <div className="relative min-w-0 overflow-hidden">
+          <AnimatePresence initial={false} mode="popLayout">
+            {blocks.map((b) => (
+              <motion.div
+                key={b.height}
+                initial={{ opacity: 0, height: 0, y: -8 }}
+                animate={{ opacity: 1, height: "auto", y: 0 }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="grid grid-cols-2 md:grid-cols-[1.1fr_1.3fr_0.7fr_1fr] gap-4 border-b border-white/[0.04] px-4 py-3 md:px-6 md:py-3.5 font-mono text-xs last:border-0 items-center min-w-0 overflow-hidden"
+              >
+                <span className="text-cyber tabular-nums truncate">#{b.height.toLocaleString()}</span>
+                <span className="hidden text-dim md:block truncate font-mono">{b.hash}</span>
+                <span className="text-right text-holo tabular-nums truncate">{b.txns.toLocaleString()}</span>
+                <span className="hidden text-dim md:block truncate font-mono">{b.validator}</span>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );
@@ -372,11 +402,14 @@ function BlockFeed() {
 
 function Marquee() {
   return (
-    <section className="marquee relative z-10 overflow-hidden border-y border-white/[0.06] py-8 md:py-10">
-      <div className="marquee-track flex items-center gap-8 md:gap-14 pr-8 md:pr-14">
+    <section
+      aria-label="Aetheris ecosystem partners"
+      className="marquee relative z-10 w-full max-w-full overflow-hidden border-y border-white/[0.06] py-6 sm:py-8 md:py-10 min-w-0"
+    >
+      <div aria-hidden="true" className="marquee-track flex items-center gap-8 pr-8 md:gap-14 md:pr-14 min-w-0">
         {[...PARTNERS, ...PARTNERS].map((p, i) => (
-          <span key={i} className="flex items-center gap-8 md:gap-14">
-            <span className="cursor-default whitespace-nowrap font-display text-xl font-semibold tracking-tight text-faint transition-all duration-300 hover:text-cyber hover:[text-shadow:0_0_28px_rgba(0,240,255,0.45)] md:text-2xl lg:text-3xl">
+          <span key={i} className="flex items-center gap-8 md:gap-14 shrink-0">
+            <span className="cursor-default whitespace-nowrap font-display text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold tracking-tight text-faint transition-all duration-300 hover:text-cyber hover:[text-shadow:0_0_28px_rgba(0,240,255,0.45)]">
               {p}
             </span>
             <svg width="10" height="10" viewBox="0 0 10 10" className="shrink-0 text-plasma-soft/50">
@@ -391,28 +424,33 @@ function Marquee() {
 
 function CTABand() {
   return (
-    <section className="relative z-10 mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28 lg:py-32">
-      <div className="grid items-center gap-10 lg:grid-cols-[1.7fr_1fr]">
-        <h2 className="font-display text-3xl font-semibold leading-[1.02] tracking-tight text-holo md:text-5xl lg:text-6xl">
+    <section className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-28 lg:py-32 min-w-0">
+      <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[1.7fr_1fr] min-w-0">
+        <h2 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.02] tracking-tight text-holo break-words">
           <TextReveal text="Build on the layer" />{" "}
           <span className="text-cyber" style={{ textShadow: "0 0 40px rgba(0,240,255,0.3)" }}>
             <TextReveal text="that never blinks." delay={0.25} />
           </span>
         </h2>
-        <div className="flex flex-col items-start gap-4 lg:items-end">
+        <div className="flex flex-col items-start gap-4 lg:items-end min-w-0">
           <Link
             to="/developers"
-            className="holo group flex min-h-[44px] items-center gap-3 rounded-xl px-7 py-4 text-sm font-semibold text-holo transition-colors duration-300 hover:text-cyber"
+            className="holo group flex min-h-[44px] w-full sm:w-auto items-center justify-center gap-3 rounded-xl px-7 py-4 text-sm font-semibold text-holo transition-colors duration-300 hover:text-cyber"
           >
             Start building
-            <svg width="14" height="14" viewBox="0 0 14 14" className="transition-transform duration-300 group-hover:translate-x-1">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            >
               <path d="M1 7h11M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" fill="none" />
             </svg>
           </Link>
           <Link to="/governance" className="text-sm font-medium text-dim transition-colors hover:text-holo">
             Join governance →
           </Link>
-          <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.22em] text-faint">
+          <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-faint">
             No roadmap promises. Shipped infrastructure.
           </p>
         </div>
@@ -423,7 +461,7 @@ function CTABand() {
 
 export default function Home() {
   return (
-    <main className="overflow-x-clip">
+    <main className="w-full max-w-full overflow-x-hidden min-w-0 bg-black text-white">
       <Hero />
       <StatsBand />
       <Manifesto />
