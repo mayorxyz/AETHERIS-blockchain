@@ -102,6 +102,7 @@ export default function Nav() {
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
+            aria-expanded={open}
             className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-lg border border-white/10 bg-white/[0.04] lg:hidden"
           >
             <span className={`h-px w-4 bg-holo transition-all duration-300 ${open ? "translate-y-[3px] rotate-45" : ""}`} />
@@ -139,6 +140,22 @@ export default function Nav() {
                 </NavLink>
               </motion.div>
             ))}
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: LINKS.length * 0.05 }}
+              className="p-4"
+            >
+              <Link
+                to="/developers"
+                className="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-medium text-holo"
+              >
+                Launch App
+                <svg width="12" height="12" viewBox="0 0 12 12">
+                  <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                </svg>
+              </Link>
+            </motion.div>
           </motion.nav>
         )}
       </AnimatePresence>

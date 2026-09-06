@@ -73,16 +73,16 @@ export default function Footer() {
                 <span className="text-holo">9421</span>
               </p>
               <p className="flex justify-between border-b border-white/[0.05] pb-2">
-                <span className="text-faint">RPC</span>
-                <span className="text-cyber">rpc.aetheris.network</span>
+                <span className="shrink-0 text-faint">RPC</span>
+                <span className="min-w-0 break-all pl-3 text-right text-cyber">rpc.aetheris.network</span>
               </p>
               <p className="flex justify-between border-b border-white/[0.05] pb-2">
-                <span className="text-faint">FINALITY</span>
+                <span className="shrink-0 text-faint">FINALITY</span>
                 <span className="text-holo">0.4s</span>
               </p>
               <p className="flex justify-between">
-                <span className="text-faint">EXPLORER</span>
-                <span className="text-holo">scan.aetheris.network</span>
+                <span className="shrink-0 text-faint">EXPLORER</span>
+                <span className="min-w-0 break-all pl-3 text-right text-holo">scan.aetheris.network</span>
               </p>
             </div>
           </div>

@@ -73,7 +73,7 @@ export default function Ecosystem() {
             { v: 4.2, suffix: "B", prefix: "$", decimals: 1, label: "Value locked" },
             { v: 1.9, suffix: "M", decimals: 1, label: "Weekly transactions" },
           ].map((s, i) => (
-            <div key={i} className="group bg-void px-6 py-6 transition-colors duration-300 hover:bg-white/[0.03]">
+            <div key={i} className="group min-w-0 bg-void px-3 py-6 transition-colors duration-300 hover:bg-white/[0.03] sm:px-6">
               <p className="font-mono text-xl text-holo transition-colors duration-300 group-hover:text-cyber md:text-2xl">
                 <AnimatedCounter to={s.v} prefix={s.prefix ?? ""} suffix={s.suffix} decimals={s.decimals ?? 0} />
               </p>
@@ -130,7 +130,7 @@ export default function Ecosystem() {
                     exit={{ opacity: 0, scale: 0.92, y: 16 }}
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1], delay: i * 0.03 }}
                   >
-                    <HolographicCard className="group relative h-full cursor-default overflow-hidden p-6 transition-transform duration-300 hover:-translate-y-1.5">
+                    <HolographicCard className="group relative h-full cursor-default overflow-hidden p-6 max-md:pb-24 transition-transform duration-300 hover:-translate-y-1.5">
                       <div className="flex items-start justify-between">
                         <Monogram name={d.name} color={color} />
                         <span
@@ -145,8 +145,8 @@ export default function Ecosystem() {
                       </h3>
                       <p className="mt-2.5 min-h-[3.5rem] text-sm leading-relaxed text-dim">{d.tag}</p>
 
-                      {/* hover metric drawer */}
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0">
+                      {/* hover metric drawer — always visible on touch/mobile */}
+                      <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0 max-md:translate-y-0">
                         <div className="flex items-end justify-between border-t px-6 py-4 backdrop-blur-xl" style={{ borderColor: `${color}33`, background: "rgba(3,3,5,0.85)" }}>
                           <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-faint">{d.metricLabel}</span>
                           <span className="font-mono text-xl font-medium" style={{ color, textShadow: `0 0 18px ${color}66` }}>

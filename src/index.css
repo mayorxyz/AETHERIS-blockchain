@@ -17,6 +17,7 @@
 
 html {
   background: var(--color-void);
+  overflow-x: clip;
 }
 
 body {
@@ -24,7 +25,23 @@ body {
   color: var(--color-holo);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body,
+  .page-shell {
+    overflow-x: hidden;
+  }
+}
+
+/* kill double-tap zoom delay on interactive elements */
+button,
+a,
+input[type="range"] {
+  touch-action: manipulation;
 }
 
 ::selection {
@@ -119,13 +136,19 @@ body {
   pointer-events: none;
 }
 
-.holo:hover::before {
-  opacity: 1;
-  animation: holo-spin 2.8s linear infinite;
-}
+@media (hover: hover) and (pointer: fine) {
+  .holo:hover::before {
+    opacity: 1;
+    animation: holo-spin 2.8s linear infinite;
+  }
 
-.holo:hover::after {
-  opacity: 1;
+  .holo:hover::after {
+    opacity: 1;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
 }
 
 @keyframes holo-spin {
@@ -218,7 +241,20 @@ input[type="range"].aeth-range::-moz-range-thumb {
   background: rgba(0, 240, 255, 0.4);
 }
 
+/* ---------- global overflow guard (Layout wrapper) ---------- */
+.page-shell {
+  overflow-x: clip;
+}
+
 /* ---------- helpers ---------- */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .text-outline {
   -webkit-text-stroke: 1px rgba(226, 232, 240, 0.16);
   color: transparent;

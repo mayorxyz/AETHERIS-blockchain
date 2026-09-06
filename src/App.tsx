@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import { MotionConfig } from "framer-motion";
 import Lenis from "lenis";
+import Layout from "./components/Layout";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -45,7 +46,7 @@ function Shell() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-void font-body text-holo">
+    <Layout>
       {/* ambient structure */}
       <div className="blueprint-grid" aria-hidden="true" />
       <div className="dot-matrix" aria-hidden="true" />
@@ -63,7 +64,7 @@ function Shell() {
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
-    </div>
+    </Layout>
   );
 }
 

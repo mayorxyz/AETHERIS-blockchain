@@ -80,7 +80,12 @@ function NodeDot({
   onHover: () => void; onLeave: () => void;
 }) {
   return (
-    <g onMouseEnter={onHover} onMouseLeave={onLeave} className="cursor-crosshair">
+    <g
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+      onClick={onHover}
+      className="cursor-crosshair"
+    >
       <circle cx={cx} cy={cy} r={r + 9} fill="transparent" />
       <circle cx={cx} cy={cy} r={r} fill={cyan ? "#00F0FF" : "#7B2CBF"} opacity={0.9} />
       <circle cx={cx} cy={cy} r={r + 4} fill="none" stroke={cyan ? "rgba(0,240,255,0.35)" : "rgba(123,44,191,0.45)"} />
@@ -295,38 +300,15 @@ function Scrollytelling() {
     setActive(Math.max(0, Math.min(2, Math.floor(v * 3.001))));
   });
 
-  const section = SECTIONS[active];
-
   return (
     <section ref={containerRef} className="relative z-10 mx-auto max-w-7xl px-5 md:px-8">
-      <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-        {/* sticky diagram */}
-        <div className="order-1 lg:order-2">
-          <div className="sticky top-24 lg:top-32">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={section.diagram}
-                initial={{ opacity: 0, scale: 0.97, y: 14 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.97, y: -14 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {section.diagram === "parallel" && <ParallelDiagram />}
-                {section.diagram === "zk" && <ZKDiagram />}
-                {section.diagram === "sequencing" && <SequencingDiagram />}
-              </motion.div>
-            </AnimatePresence>
-            <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-faint">
-              Hover the nodes — every component has a spec sheet
-            </p>
-          </div>
-        </div>
-
-        {/* scrolling narrative */}
-        <div className="order-2 lg:order-1">
+      {/* ---------------- Desktop Layout (Hidden on Mobile) ---------------- */}
+      <div className="hidden lg:grid lg:grid-cols-2 lg:gap-16">
+        {/* Scrolling Narrative */}
+        <div className="order-1">
           {SECTIONS.map((s, i) => (
-            <div key={s.num} className="flex min-h-[78vh] items-center lg:min-h-[92vh]">
-              <div className={active === i ? "" : "opacity-30"}>
+            <div key={s.num} className="flex min-h-[92vh] items-center">
+              <div className={active === i ? "" : "opacity-30 transition-opacity duration-300"}>
                 <div className="flex items-baseline gap-5">
                   <span className="font-display text-7xl font-bold text-transparent [-webkit-text-stroke:1px_rgba(0,240,255,0.4)] md:text-8xl">
                     {s.num}
@@ -348,9 +330,68 @@ function Scrollytelling() {
             </div>
           ))}
         </div>
+
+        {/* Sticky Diagram Pin */}
+        <div className="order-2">
+          <div className="sticky top-32">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={SECTIONS[active].diagram}
+                initial={{ opacity: 0, scale: 0.97, y: 14 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.97, y: -14 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {SECTIONS[active].diagram === "parallel" && <ParallelDiagram />}
+                {SECTIONS[active].diagram === "zk" && <ZKDiagram />}
+                {SECTIONS[active].diagram === "sequencing" && <SequencingDiagram />}
+              </motion.div>
+            </AnimatePresence>
+            <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-faint">
+              Hover the nodes — every component has a spec sheet
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* progress rail */}
+      {/* ---------------- Mobile Layout (Inline Diagrams) ---------------- */}
+      <div className="flex flex-col gap-16 lg:hidden">
+        {SECTIONS.map((s) => (
+          <div key={s.num} className="flex flex-col gap-8 rounded-2xl border border-white/[0.05] bg-white/[0.01] p-6">
+            <div>
+              <div className="flex items-baseline gap-4">
+                <span className="font-display text-6xl font-bold text-transparent [-webkit-text-stroke:1px_rgba(0,240,255,0.4)]">
+                  {s.num}
+                </span>
+                <div className="h-px flex-1 bg-gradient-to-r from-cyber/40 to-transparent" />
+              </div>
+              <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight text-holo">
+                {s.title}
+              </h2>
+              <p className="mt-4 leading-relaxed text-dim text-sm">{s.copy}</p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {s.specs.map((spec) => (
+                  <span key={spec} className="rounded border border-cyber/20 bg-cyber/[0.04] px-2.5 py-1 font-mono text-[9px] tracking-[0.16em] text-cyber">
+                    {spec}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Inline Diagram for Mobile */}
+            <div className="w-full">
+              {s.diagram === "parallel" && <ParallelDiagram />}
+              {s.diagram === "zk" && <ZKDiagram />}
+              {s.diagram === "sequencing" && <SequencingDiagram />}
+              <p className="mt-3 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-faint">
+                Tap nodes for details
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Progress Rail (Desktop Only) */}
       <div className="pointer-events-none fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-3 lg:flex">
         {SECTIONS.map((s, i) => (
           <div key={s.num} className="flex items-center gap-2">

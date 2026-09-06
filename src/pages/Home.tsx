@@ -98,9 +98,9 @@ function Hero() {
   return (
     <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden">
       <NetworkMesh />
-      {/* anchored structural glows */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 h-[560px] w-[880px] -translate-x-1/2 rounded-full bg-plasma/15 blur-[140px]" />
-      <div className="pointer-events-none absolute bottom-[-200px] right-[-120px] h-[420px] w-[420px] rounded-full bg-cyber/[0.06] blur-[120px]" />
+      {/* anchored structural glows: responsive widths to prevent horizontal scroll artifacts on small viewports */}
+      <div className="pointer-events-none absolute -top-40 left-1/2 h-[560px] w-[120vw] max-w-[880px] -translate-x-1/2 rounded-full bg-plasma/15 blur-[140px]" />
+      <div className="pointer-events-none absolute bottom-[-200px] right-[-120px] h-[420px] w-[80vw] max-w-[420px] rounded-full bg-cyber/[0.06] blur-[120px]" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pt-28 md:px-8">
         <motion.p
@@ -113,7 +113,8 @@ function Hero() {
           Aetheris Protocol · L1 · Mainnet Genesis 2024
         </motion.p>
 
-        <h1 className="mt-8 font-display text-[13.5vw] font-semibold leading-[0.92] tracking-[-0.01em] text-holo sm:text-7xl lg:text-[6.2rem]">
+        {/* Responsive typography scaling from mobile to ultrawide */}
+        <h1 className="mt-8 font-display text-[12vw] font-semibold leading-[0.92] tracking-[-0.01em] text-holo sm:text-6xl md:text-7xl lg:text-[6.2rem] xl:text-[7rem] 2xl:text-[8rem]">
           <TextReveal text="THE FOUNDATIONAL" mode="chars" stagger={0.022} className="block" />
           <TextReveal text="LAYER FOR THE" mode="chars" stagger={0.022} delay={0.25} className="block" />
           <span className="block text-cyber" style={{ textShadow: "0 0 44px rgba(0,240,255,0.35)" }}>
@@ -141,7 +142,7 @@ function Hero() {
           >
             <Link
               to="/technology"
-              className="holo group flex items-center gap-3 rounded-xl px-6 py-3.5 text-sm font-semibold text-holo transition-all duration-300 hover:text-cyber"
+              className="holo group flex min-h-[44px] items-center gap-3 rounded-xl px-6 py-3.5 text-sm font-semibold text-holo transition-all duration-300 hover:text-cyber"
             >
               Explore the stack
               <svg width="14" height="14" viewBox="0 0 14 14" className="transition-transform duration-300 group-hover:translate-x-1">
@@ -150,7 +151,7 @@ function Hero() {
             </Link>
             <Link
               to="/developers"
-              className="group flex items-center gap-2 text-sm font-semibold text-cyber transition-colors hover:text-holo"
+              className="group flex min-h-[44px] items-center gap-2 text-sm font-semibold text-cyber transition-colors hover:text-holo"
             >
               <span className="font-mono text-xs">$</span> Build on Aetheris
             </Link>
@@ -163,7 +164,7 @@ function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 1 }}
-        className="relative z-10 mx-auto mt-16 flex w-full max-w-7xl items-end justify-between px-5 pb-8 md:px-8"
+        className="relative z-10 mx-auto mt-12 flex w-full max-w-7xl items-end justify-between px-5 pb-8 md:mt-16 md:px-8"
       >
         <div className="flex items-center gap-3 text-faint">
           <motion.span
@@ -211,9 +212,9 @@ function StatsBand() {
     <section className="relative z-10 mx-auto -mt-2 max-w-7xl px-5 md:px-8">
       <div className="holo grid grid-cols-2 divide-x divide-y divide-white/[0.06] rounded-2xl lg:grid-cols-4 lg:divide-y-0">
         {items.map((it, i) => (
-          <div key={it.label} className="group px-6 py-7 transition-colors duration-300 hover:bg-white/[0.03]">
+          <div key={it.label} className="group px-3 py-4 transition-colors duration-300 hover:bg-white/[0.03] sm:px-6 sm:py-7">
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-faint">{it.label}</p>
-            <p className="mt-3 font-mono text-xl font-medium text-holo transition-colors duration-300 group-hover:text-cyber md:text-2xl">
+            <p className="mt-2 font-mono text-lg font-medium text-holo transition-colors duration-300 group-hover:text-cyber sm:text-xl md:text-2xl">
               {it.node}
             </p>
             <span className="mt-3 block h-px w-8 bg-cyber/40 transition-all duration-500 group-hover:w-full group-hover:bg-cyber" />
@@ -233,9 +234,9 @@ function Manifesto() {
   const words = text.split(" ");
 
   return (
-    <section ref={ref} className="relative z-10 mx-auto max-w-7xl px-5 py-32 md:px-8 md:py-44">
-      <p className="mb-10 font-mono text-[11px] uppercase tracking-[0.28em] text-faint">// Manifesto</p>
-      <p className="max-w-5xl font-display text-3xl font-semibold leading-[1.15] tracking-tight text-holo sm:text-4xl lg:text-[3.4rem]">
+    <section ref={ref} className="relative z-10 mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-32 lg:py-44">
+      <p className="mb-8 md:mb-10 font-mono text-[11px] uppercase tracking-[0.28em] text-faint">// Manifesto</p>
+      <p className="max-w-5xl font-display text-2xl font-semibold leading-[1.15] tracking-tight text-holo sm:text-3xl md:text-4xl lg:text-[3.4rem]">
         {words.map((w, i) => (
           <ManifestoWord
             key={i}
@@ -252,10 +253,10 @@ function Manifesto() {
 function StackAnatomy() {
   return (
     <section className="relative z-10 mx-auto max-w-7xl px-5 py-20 md:px-8">
-      <div className="grid gap-14 lg:grid-cols-[1fr_1.6fr]">
+      <div className="grid gap-10 lg:gap-14 lg:grid-cols-[1fr_1.6fr]">
         <div className="lg:sticky lg:top-32 lg:self-start">
           <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-faint">// Architecture</p>
-          <h2 className="mt-5 font-display text-4xl font-semibold leading-[1.02] tracking-tight text-holo md:text-5xl">
+          <h2 className="mt-5 font-display text-3xl font-semibold leading-[1.02] tracking-tight text-holo md:text-4xl lg:text-5xl">
             <TextReveal text="Anatomy of the stack." />
           </h2>
           <p className="mt-6 max-w-sm leading-relaxed text-dim">
@@ -282,13 +283,13 @@ function StackAnatomy() {
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
-              <HolographicCard className="group cursor-default p-7 transition-all duration-300 hover:-translate-y-1 md:p-8">
+              <HolographicCard className="group cursor-default p-5 transition-all duration-300 hover:-translate-y-1 md:p-7 lg:p-8">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <div className="flex items-baseline gap-4">
                     <span className="font-mono text-xs text-cyber">{s.index}</span>
                     <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-faint">{s.layer}</span>
                   </div>
-                  <h3 className="font-display text-2xl font-semibold text-holo transition-colors duration-300 group-hover:text-cyber">
+                  <h3 className="font-display text-xl font-semibold text-holo transition-colors duration-300 group-hover:text-cyber md:text-2xl">
                     {s.name}
                   </h3>
                 </div>
@@ -340,11 +341,12 @@ function BlockFeed() {
       </div>
 
       <div className="holo overflow-hidden rounded-2xl">
-        <div className="grid grid-cols-[1.1fr_1.3fr_0.7fr_1fr] gap-4 border-b border-white/[0.07] px-6 py-3.5 font-mono text-[10px] uppercase tracking-[0.2em] text-faint max-md:[&>*:nth-child(2)]:hidden max-md:[&>*:nth-child(4)]:hidden">
+        {/* Replaced fragile nth-child hiding with explicit responsive grid columns and hidden/block utilities */}
+        <div className="grid grid-cols-2 md:grid-cols-[1.1fr_1.3fr_0.7fr_1fr] gap-4 border-b border-white/[0.07] px-4 py-3 md:px-6 md:py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
           <span>Height</span>
-          <span>Hash</span>
+          <span className="hidden md:block">Hash</span>
           <span className="text-right">Txns</span>
-          <span className="max-md:hidden">Validator</span>
+          <span className="hidden md:block">Validator</span>
         </div>
         <AnimatePresence initial={false}>
           {blocks.map((b) => (
@@ -354,12 +356,12 @@ function BlockFeed() {
               initial={{ opacity: 0, y: -16, backgroundColor: "rgba(0,240,255,0.08)" }}
               animate={{ opacity: 1, y: 0, backgroundColor: "rgba(0,240,255,0)" }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="grid grid-cols-[1.1fr_1.3fr_0.7fr_1fr] gap-4 border-b border-white/[0.04] px-6 py-3.5 font-mono text-xs last:border-0 max-md:[&>*:nth-child(2)]:hidden max-md:[&>*:nth-child(4)]:hidden"
+              className="grid grid-cols-2 md:grid-cols-[1.1fr_1.3fr_0.7fr_1fr] gap-4 border-b border-white/[0.04] px-4 py-3 md:px-6 md:py-3.5 font-mono text-xs last:border-0"
             >
               <span className="text-cyber">#{b.height.toLocaleString()}</span>
-              <span className="text-dim">{b.hash}</span>
+              <span className="hidden text-dim md:block">{b.hash}</span>
               <span className="text-right text-holo">{b.txns.toLocaleString()}</span>
-              <span className="text-dim max-md:hidden">{b.validator}</span>
+              <span className="hidden text-dim md:block">{b.validator}</span>
             </motion.div>
           ))}
         </AnimatePresence>
@@ -370,11 +372,11 @@ function BlockFeed() {
 
 function Marquee() {
   return (
-    <section className="marquee relative z-10 overflow-hidden border-y border-white/[0.06] py-10">
-      <div className="marquee-track items-center gap-14 pr-14">
+    <section className="marquee relative z-10 overflow-hidden border-y border-white/[0.06] py-8 md:py-10">
+      <div className="marquee-track flex items-center gap-8 md:gap-14 pr-8 md:pr-14">
         {[...PARTNERS, ...PARTNERS].map((p, i) => (
-          <span key={i} className="flex items-center gap-14">
-            <span className="cursor-default whitespace-nowrap font-display text-2xl font-semibold tracking-tight text-faint transition-all duration-300 hover:text-cyber hover:[text-shadow:0_0_28px_rgba(0,240,255,0.45)] md:text-3xl">
+          <span key={i} className="flex items-center gap-8 md:gap-14">
+            <span className="cursor-default whitespace-nowrap font-display text-xl font-semibold tracking-tight text-faint transition-all duration-300 hover:text-cyber hover:[text-shadow:0_0_28px_rgba(0,240,255,0.45)] md:text-2xl lg:text-3xl">
               {p}
             </span>
             <svg width="10" height="10" viewBox="0 0 10 10" className="shrink-0 text-plasma-soft/50">
@@ -389,9 +391,9 @@ function Marquee() {
 
 function CTABand() {
   return (
-    <section className="relative z-10 mx-auto max-w-7xl px-5 pt-28 md:px-8">
+    <section className="relative z-10 mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28 lg:py-32">
       <div className="grid items-center gap-10 lg:grid-cols-[1.7fr_1fr]">
-        <h2 className="font-display text-4xl font-semibold leading-[1.02] tracking-tight text-holo md:text-6xl">
+        <h2 className="font-display text-3xl font-semibold leading-[1.02] tracking-tight text-holo md:text-5xl lg:text-6xl">
           <TextReveal text="Build on the layer" />{" "}
           <span className="text-cyber" style={{ textShadow: "0 0 40px rgba(0,240,255,0.3)" }}>
             <TextReveal text="that never blinks." delay={0.25} />
@@ -400,7 +402,7 @@ function CTABand() {
         <div className="flex flex-col items-start gap-4 lg:items-end">
           <Link
             to="/developers"
-            className="holo group flex items-center gap-3 rounded-xl px-7 py-4 text-sm font-semibold text-holo transition-colors duration-300 hover:text-cyber"
+            className="holo group flex min-h-[44px] items-center gap-3 rounded-xl px-7 py-4 text-sm font-semibold text-holo transition-colors duration-300 hover:text-cyber"
           >
             Start building
             <svg width="14" height="14" viewBox="0 0 14 14" className="transition-transform duration-300 group-hover:translate-x-1">
@@ -421,7 +423,7 @@ function CTABand() {
 
 export default function Home() {
   return (
-    <main>
+    <main className="overflow-x-clip">
       <Hero />
       <StatsBand />
       <Manifesto />
